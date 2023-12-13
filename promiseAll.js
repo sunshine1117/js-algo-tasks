@@ -53,3 +53,15 @@ function promiseAll(promises) {
     }
   })
 }
+
+
+const resolve = (value, timeout) => new Promise((resolve) => {
+  return setTimeout(res, timeout, value);
+})
+
+const reject = (value, timeout) => new Promise((_, reject) => {
+  return setTimeout(reject, timeout, value);
+})
+
+promiseAll([resolve(1, 100), resolve(2, 200), resolve(3, 100)]).then(res => console.log(res));
+promiseAll([reject(1, 100), reject(2, 500), reject(3, 1000)]).catch(err => console.log(err))
